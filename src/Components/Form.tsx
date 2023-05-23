@@ -1,5 +1,6 @@
 import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { categories } from "../App";
 
 interface FormData {
   description: string;
@@ -46,19 +47,16 @@ const Form = () => {
       </div>
       <div className="mb-3">
         <label htmlFor="category">Category</label>
-        <input
-          {...register("category", { required: true })}
-          id="category"
-          type="text"
-          className="form-control"
-        />
-        {errors.category?.type === "required" && (
-          <p className="text-danger">Amount is required</p>
-        )}
+        <select id="category" className="form-select">
+          <option value=""></option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
       </div>
-      <button className="btn btn-primary" type="submit">
-        Submit
-      </button>
+      <button className="btn btn-primary">Submit</button>
     </form>
   );
 };
